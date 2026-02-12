@@ -1,20 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Climate Sonification</title>
-  <style>
-    body {
-      background: black;
-      color: white;
-      font-family: Arial;
-      text-align: center;
-      margin-top: 100px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>It’s Getting Hot in Here – Climate Change Sonification</title>
+
+<style>
+body {
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  overflow: hidden;
+}
+
+h1 {
+  margin-top: 40px;
+  font-weight: 300;
+}
+
+#year {
+  font-size: 28px;
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
+.thermometer-container {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thermometer {
+  width: 120px;
+  height: 500px;
+  border: 4px solid white;
+  border-radius: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, red, orange, yellow);
+  height: 0%;
+  transition: height 1s linear;
+}
+
+.value {
+  font-size: 42px;
+  margin-top: 20px;
+}
+</style>
 </head>
+
 <body>
-  <h1>It’s Getting Hot in Here</h1>
-  <p>Climate Change Sonification</p>
+
+<h1>It’s Getting Hot in Here – Climate Change Sonification</h1>
+<div id="year"></div>
+
+<div class="thermometer-container">
+  <div class="thermometer">
+    <div class="fill" id="fill"></div>
+  </div>
+</div>
+
+<div class="value" id="value"></div>
+
+<script>
+
+// Temperaturdaten (vereinfachte Kurve 1880–2080)
+const years = [];
+const temps = [];
+
+for (let y = 1880; y <= 2080; y++) {
+  years.push(y);
+
+  // vereinfachtes Modell
+  let temp;
+  if (y < 1950) {
+    temp = -0.2 + (y - 1880) * 0.003;
+  } else if (y < 2025) {
+    temp = 0.0 + (y - 1950) * 0.015;
+  } else {
+    temp = 1.2 + (y - 2025) * 0.025;
+  }
+
+  temps.push(temp);
+}
+
+let index = 0;
+const fill = document.getElementById("fill");
+const value = document.getElementById("value");
+const yearLabel = document.getElementById("year");
+
+function updateThermometer() {
+
+  const temp = temps[index];
+  const year = years[index];
+
+  // Skalierung: -0.5 bis +4.0 °C
+  const minTemp = -0.5;
+  const maxTemp = 4.0;
+  const percentage = ((temp - minTemp) / (maxTemp - minTemp)) * 100;
+
+  fill.style.height = percentage + "%";
+  value.innerHTML = temp.toFixed(2) + " °C";
+  yearLabel.innerHTML = "Year: " + year;
+
+  index++;
+  if (index >= years.length) {
+    index = 0; // Loop
+  }
+}
+
+// Geschwindigkeit (alle 0.5 Sekunden ein Jahr)
+setInterval(updateThermometer, 500);
+
+updateThermometer();
+
+</script>
+
 </body>
 </html>
