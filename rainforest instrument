@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Regenwald Instrument</title>
+  <style>
+    body {
+      background: #0b1d13;
+      color: #d6ffe6;
+      font-family: monospace;
+      padding: 40px;
+    }
+    pre {
+      background: #112b1d;
+      padding: 20px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌿 rainforest instrument</h1>
+
+<p>Sonic Pi Komposition.</p>
+
+<h2>Code</h2>
+
+<pre>
+# Hier deinen Sonic Pi Code einfügen
+use_bpm 60
+play :e3
+sleep 1
+play :g3
+</pre>
+
+</body>
+</html>
