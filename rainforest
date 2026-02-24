@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rainforest v37 – Machine Jan</title>
+
+<style>
+body {
+  background: radial-gradient(circle at top, #0f1f17, #08130e);
+  color: #d9ffe8;
+  font-family: monospace;
+  padding: 60px;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+h2 {
+  margin-top: 50px;
+  color: #8affc1;
+}
+
+pre {
+  background: rgba(0,0,0,0.4);
+  padding: 25px;
+  overflow-x: auto;
+  border-left: 3px solid #3cff9b;
+}
+
+a {
+  color: #8affc1;
+  text-decoration: none;
+}
+
+audio {
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌿 RAINFOREST v37</h1>
+<p>
+Generative ecosystem built in <strong>Sonic Pi</strong> – organic, layered and spatial.
+</p>
+
+<h2>Concept</h2>
+<p>
+Multiple autonomous sound layers create a spatial rainforest:
+rain, forest floor, monkeys, birds, insects, macaw, distant bells.
+The function <code>forest_voice</code> simulates distance through filtering and amplitude reduction.
+</p>
+
+<h2>Sonic Pi Code</h2>
+
+<pre>
+(Paste your complete Sonic Pi code here)
+</pre>
+
+<p>
+Composed with 
+<a href="https://sonic-pi.net" target="_blank">
+Sonic Pi
+</a>
+</p>
+
+</body>
+</html>
