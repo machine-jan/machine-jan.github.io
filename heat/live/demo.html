@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEAT! – Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="poster">
+    <header class="poster-header">
+      <div class="series-title">Circular Sounds</div>
+      <h1 class="main-title">HEAT!</h1>
+    </header>
+
+    <section class="year-section">
+      <div id="year" class="year-display">----</div>
+    </section>
+
+    <section class="thermo-row">
+      <div class="thermo-col">
+        <div class="thermo-heading">CO2 Emissions</div>
+        <div class="thermo-shell thermo-co2-shell">
+          <div id="co2-fill" class="thermo-fill"></div>
+        </div>
+        <div class="thermo-reading">
+          <span id="co2">--</span> GtCO2
+        </div>
+      </div>
+
+      <div class="thermo-col">
+        <div class="thermo-heading thermo-heading-stack">
+          <span>Temperature</span>
+          <span>Anomaly</span>
+        </div>
+        <div class="thermo-shell thermo-anomaly-shell">
+          <div id="anomaly-fill" class="thermo-fill"></div>
+        </div>
+        <div class="thermo-reading thermo-reading-big">
+          <span id="anomaly">--</span> °C
+        </div>
+      </div>
+
+      <div class="thermo-col">
+        <div class="thermo-heading">Biodiversity</div>
+        <div class="thermo-shell thermo-bio-shell">
+          <div id="bio-fill" class="thermo-fill bio-loss"></div>
+        </div>
+        <div class="thermo-reading">
+          <span id="biodiversity">--</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-box">
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-inner">
+            <div class="info-head">
+              <div class="info-label">Absolute temperature</div>
+              <div class="info-value"><span id="temperature">--</span> °C</div>
+            </div>
+            <div class="info-note">Scientific climate reference data; from 2026 onward based on projected global climate pathways.</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-inner">
+            <div class="info-head">
+              <div class="info-label">Temperature anomaly</div>
+              <div class="info-value"><span id="anomaly-text">--</span> °C</div>
+            </div>
+            <div class="info-note">Deviation from the preindustrial baseline embedded in this timeline, beginning around 1800.</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-inner">
+            <div class="info-head">
+              <div class="info-label">CO2 emissions / year</div>
+              <div class="info-value"><span id="co2-text">--</span> GtCO2</div>
+            </div>
+            <div class="info-note">CO2 emission 1800: <span id="co2-base">--</span> GtCO2 · Since 1800: <span id="co2-growth">--</span></div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-inner">
+            <div class="info-head">
+              <div class="info-label">Stress index</div>
+              <div class="info-value"><span id="stress">--</span></div>
+            </div>
+            <div class="info-note">Range 0–1. Composite signal from temperature, CO2, biodiversity and forest loss.</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-inner">
+            <div class="info-head">
+              <div class="info-label">Biodiversity</div>
+              <div class="info-value"><span id="biodiversity-text">--</span></div>
+            </div>
+            <div class="info-note">Range 0–1. Decreasing species, plants and ecological complexity.</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-inner">
+            <div class="info-head">
+              <div class="info-label">Forest loss</div>
+              <div class="info-value"><span id="forest-loss">--</span> %</div>
+            </div>
+            <div class="info-note">Relative loss of forested life-space across the timeline. Range 0–100.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="poster-footer">
+      <div class="funding-note">
+        Supported by Fab City Hamburg and by public funding through Hamburg’s Behörde für Kultur und Medien.
+      </div>
+
+      <div class="logo-strip">
+        <div class="logo-row">
+          <div class="logo-slot logo-slot-fabcity">
+            <img
+              src="logos/fchh-logo_linear_col-dark.svg"
+              alt="Fab City Hamburg"
+              class="logo-img"
+            >
+          </div>
+
+          <div class="logo-slot logo-slot-bkm">
+            <img
+              src="logos/behoerde-fur-kultur-und-medien-hamburg-logo-vector.png"
+              alt="Behörde für Kultur und Medien Hamburg"
+              class="logo-img"
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <a href="../" style="position:fixed;top:12px;left:16px;color:#fff6e8;opacity:.6;font-size:13px;text-decoration:none;letter-spacing:.1em">← HEAT!</a>
+  <script src="demo.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

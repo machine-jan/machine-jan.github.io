@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEAT! – Circular Sounds</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<main>
+  <div class="crumbs"><a href="../">Machine Jan</a> / HEAT!</div>
+
+  <h1>HEAT!<br><small style="font-size:0.45em;letter-spacing:0.28em;color:var(--muted)">CIRCULAR SOUNDS</small></h1>
+  <p class="lead">
+    Eine Klimasonifikation als Live-Performance. Die Jahre 1800 bis 2100 laufen in Zehnerschritten durch –
+    globaler CO₂-Ausstoß wird zum Männerchor, die Temperatur zum Frauenchor, die Biodiversität zum Regenwald,
+    der mit der Zeit verstummt. Ein Browser-Plakat zeigt parallel Jahr, Thermometer und Stressindex.
+  </p>
+
+  <div class="cards" style="margin-top:32px">
+    <a class="card warm" href="live/demo.html">
+      <h3>▶ Visualisierung ansehen</h3>
+      <p>Demo-Lauf 1800–2100 im Zeitraffer, berechnet aus denselben Daten wie die Performance.</p>
+    </a>
+    <a class="card" href="../code.html?f=heat/scripts/v0.22_performance_forest-loss.rb">
+      <h3>Code der letzten Fassung</h3>
+      <p>Version 0.22 – Sonic Pi, 2 Stunden, schreibt pro Jahrzehnt ein JSON für das Plakat.</p>
+    </a>
+  </div>
+
+  <h2>Versionen</h2>
+  <ol class="timeline">
+    <li class="key">
+      <span class="ver">Live Working Climate Change</span><span class="tag key">mit Maja</span>
+      <p>
+        Die erste aufgeführte Fassung, zusammen mit Maja. Jahre 1880–2080, Laufzeit 2 Stunden.
+        Drei Chöre: Männer = Temperatur, Frauen = CO₂ (ppm), Kinder = Weltbevölkerung;
+        Biodiversität und Lebenserwartung modulieren Delay und Tremolo.
+        Sonic Pi schreibt jede Sekunde ein HTML mit Jahreszahl und Thermometer.
+        Im selben Buffer: ein Slicer für Drones, Pads und Grains aus einer Diskussionsaufnahme.
+      </p>
+      <div class="links">
+        <a href="../code.html?f=heat/scripts/v0.x_live-climate-change_mit-maja.rb">Code</a> ·
+        <a href="material/thermometer-1880-2080.html">Thermometer 1880–2080</a>
+      </div>
+    </li>
+    <li>
+      <span class="ver">v0.7d</span> – Prophet-Männer
+      <p>Testfassung mit drei Thermometern (Temperatur, Weltbevölkerung, Biodiversität). Männerchor auf <code>:prophet</code>, tiefer und lauter. Erstmals ein eigener Regenwald mit Regen, Insekten, Vögeln und Rufen.</p>
+      <div class="links"><a href="../code.html?f=heat/scripts/v0.7d_prophet-maenner.rb">Code</a></div>
+    </li>
+    <li>
+      <span class="ver">v0.12</span> – CO₂ statt Bevölkerung
+      <p>Zeitraum jetzt 1800–2100. Die Bevölkerungsreihe wird durch den globalen CO₂-Ausstoß (GtCO₂/Jahr) ersetzt: Männerchor = CO₂, Frauenchor = Temperatur, Regenwald = Biodiversität. Neu: rhythmischer Affenschrei.</p>
+      <div class="links"><a href="../code.html?f=heat/scripts/v0.12_visualisierung-co2.rb">Code</a></div>
+    </li>
+    <li>
+      <span class="ver">v0.13g</span> – Happy Chords
+      <p>Nur Klang, HTML vorerst aus. Pro Jahrzehnt ein Vierklang aus der Epochen-Skala, Jahrzehnt-Marker als kurzer Chorakzent. Prophet sämiger, Frauenchor lauter.</p>
+      <div class="links"><a href="../code.html?f=heat/scripts/v0.13g_happichords.rb">Code</a></div>
+    </li>
+    <li>
+      <span class="ver">v0.14b</span> – Jazz-Progression
+      <p>Regenwald stärker an Skalen und eine Akkordfolge gebunden. Große CO₂-Sprünge und Kipppunkte erzeugen dissonantere Intervalle und alternierende Rhythmuspatterns.</p>
+      <div class="links"><a href="../code.html?f=heat/scripts/v0.14b_jazz-progression.rb">Code</a></div>
+    </li>
+    <li>
+      <span class="ver">v0.15b</span> – Schwebende Akkorde
+      <p>Bei intakter Umwelt offenere, sus-artige Akkorde. Wald wieder freier, Phrasen mit echten, teils langen Pausen. Mehr Hollow, weniger Prophet.</p>
+      <div class="links"><a href="../code.html?f=heat/scripts/v0.15b_sus-chords.rb">Code</a></div>
+    </li>
+    <li>
+      <span class="ver">v0.15c</span> – Staccato
+      <p>Experiment mit einem Öko-Spannungsindex, zufälligen Akkordwahlen und probabilistischen Vögeln. Verworfen.</p>
+      <div class="links"><a href="../code.html?f=heat/scripts/v0.15c_stakkato.rb">Code</a></div>
+    </li>
+    <li class="final">
+      <span class="ver">v0.22</span> – Forest Loss<span class="tag final">zuletzt aufgeführt</span>
+      <p>
+        Die Fassung der letzten Aufführung im FabLab St. Pauli, solo. 2 Stunden, 1800–2100.
+        Neue Datenreihe Waldverlust; Stressindex aus Temperatur, CO₂, Biodiversität und Waldverlust
+        steuert das Tempo der Waldereignisse. Sonic Pi schreibt pro Jahrzehnt ein JSON
+        (<code>latest.json</code>), das HTML-Plakat liest es jede Sekunde.
+      </p>
+      <div class="links">
+        <a href="../code.html?f=heat/scripts/v0.22_performance_forest-loss.rb">Code</a> ·
+        <a href="live/demo.html">Plakat (Demo)</a> ·
+        <a href="live/">Plakat (Performance-Modus)</a> ·
+        <a href="live/latest.json">letztes JSON</a>
+      </div>
+    </li>
+  </ol>
+
+  <h2>Zusatzmaterial</h2>
+  <div class="cards">
+    <a class="card" href="material/abreisskalender.pdf">
+      <h3>Abreißkalender</h3>
+      <p>„Anno“-Jahreskarten 1800–2100 (und 3000) mit Uhrzeiten für den Ablauf. PDF, 26 Seiten.</p>
+    </a>
+    <a class="card" href="material/weltklima-beamer_v5.html">
+      <h3>Weltklima 1800–2100</h3>
+      <p>Beamer-Folie: Thermometer mit globaler Mitteltemperatur, gemessen bis 2020, danach Projektion.</p>
+    </a>
+    <a class="card" href="material/thermometer-1880-2080.html">
+      <h3>Thermometer 1880–2080</h3>
+      <p>Frühe Browser-Animation „It’s Getting Hot in Here“ – ein Jahr pro halbe Sekunde.</p>
+    </a>
+  </div>
+
+  <footer>
+    Gefördert von Fab City Hamburg und aus öffentlichen Mitteln der Behörde für Kultur und Medien Hamburg.<br>
+    Die Datenreihen sind künstlerisch plausibilisierte Steuerreihen, keine exakten Messwerte.
+  </footer>
+</main>
+</body>
+</html>

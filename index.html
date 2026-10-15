@@ -2,10 +2,30 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Meine Mini-Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine Jan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
 </head>
 <body>
-  <h1>Hallo Welt 🌍</h1>
-  <p>Meine erste GitHub-Website.</p>
+<main>
+  <h1>MACHINE JAN</h1>
+  <p class="lead">Generative Musik, Datensonifikation und Live-Code mit Sonic Pi – von Jan Buchenau.</p>
+
+  <h2>Projekte</h2>
+  <div class="cards">
+    <a class="card warm" href="heat/">
+      <h3>HEAT! – Circular Sounds</h3>
+      <p>Klimasonifikation 1800–2100: CO₂, Temperatur und Biodiversität als Chor und Regenwald. Mit Live-Visualisierung.</p>
+    </a>
+    <a class="card" href="regenwald/">
+      <h3>Regenwald</h3>
+      <p>Generatives Ökosystem in Sonic Pi – Regen, Vögel, Insekten, Affen, Raubtiere, in räumlicher Tiefenstaffelung.</p>
+    </a>
+  </div>
+
+  <footer>Code komponiert mit <a href="https://sonic-pi.net" target="_blank" rel="noopener">Sonic Pi</a>.</footer>
+</main>
 </body>
 </html>

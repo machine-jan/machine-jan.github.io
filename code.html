@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code – Machine Jan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <style>
+    main { max-width: 1100px; }
+    .bar { display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; font-size: 13px; }
+    #name { font-size: 18px; font-weight: 700; margin-right: auto; word-break: break-all; }
+    pre { counter-reset: ln; padding-left: 0; }
+    pre span { display: block; min-height: 1.5em; padding-left: 56px; position: relative; white-space: pre; }
+    pre span::before {
+      counter-increment: ln; content: counter(ln);
+      position: absolute; left: 0; width: 40px; text-align: right; color: #4d6b5a;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="crumbs"><a href="./">Machine Jan</a> / <a id="back" href="./">zurück</a></div>
+  <div class="bar">
+    <span id="name">…</span>
+    <button id="copy" type="button">Kopieren</button>
+    <a id="dl" href="#" download>Download</a>
+  </div>
+  <pre id="code">Lade …</pre>
+</main>
+<script>
+  const params = new URLSearchParams(location.search);
+  const f = params.get("f") || "";
+  const codeEl = document.getElementById("code");
+  const ok = /^[\w\-./]+\.rb$/.test(f) && !f.includes("..");
+  document.getElementById("name").textContent = f.split("/").pop() || "–";
+  const dir = f.split("/")[0];
+  if (dir) document.getElementById("back").href = dir + "/";
+  document.getElementById("dl").href = f;
+  let raw = "";
+  if (!ok) {
+    codeEl.textContent = "Datei nicht gefunden.";
+  } else {
+    fetch(f).then(r => { if (!r.ok) throw 0; return r.text(); }).then(t => {
+      raw = t;
+      codeEl.textContent = "";
+      t.replace(/\n$/, "").split("\n").forEach(line => {
+        const s = document.createElement("span");
+        s.textContent = line.replace(/\r$/, "") || "\u00a0";
+        codeEl.appendChild(s);
+      });
+    }).catch(() => codeEl.textContent = "Datei nicht gefunden.");
+  }
+  document.getElementById("copy").onclick = async (e) => {
+    try { await navigator.clipboard.writeText(raw); e.target.textContent = "Kopiert ✓"; }
+    catch { e.target.textContent = "Nicht möglich"; }
+  };
+</script>
+</body>
+</html>
