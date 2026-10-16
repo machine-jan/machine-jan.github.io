@@ -33,7 +33,9 @@ in den Ordner legen, in den das Skript schreibt (`LATEST_PATH`), und `index.html
 
 ## Daten & Quellen
 
-Die Datenreihen in HEAT! sind künstlerisch geglättete Steuerreihen. Referenzdatensätze zum Vergleich
+Die Datenreihen in HEAT! sind künstlerisch geglättete Steuerreihen und bleiben als Zeitdokument des
+Work in Progress unverändert; spätere Versionen werden mit Daten wissenschaftlicher Institute unterfüttert.
+Referenzdatensätze zum Vergleich
 (Berkeley Earth, NOAA, IPCC AR6, Global Carbon Budget 2024, WWF/ZSL Living Planet Index, FAO FRA 2020)
 stehen auf der Projektseite: https://machine-jan.github.io/heat/#quellen
 
