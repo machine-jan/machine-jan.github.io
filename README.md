@@ -31,6 +31,12 @@ Sonic Pi schreibt bei jedem Jahrzehnt `latest.json`. Für die Aufführung `heat/
 in den Ordner legen, in den das Skript schreibt (`LATEST_PATH`), und `index.html`
 über einen lokalen Webserver öffnen (z. B. `python -m http.server`), damit `fetch` funktioniert.
 
+## Daten & Quellen
+
+Die Datenreihen in HEAT! sind künstlerisch geglättete Steuerreihen. Referenzdatensätze zum Vergleich
+(Berkeley Earth, NOAA, IPCC AR6, Global Carbon Budget 2024, WWF/ZSL Living Planet Index, FAO FRA 2020)
+stehen auf der Projektseite: https://machine-jan.github.io/heat/#quellen
+
 ## Lizenz
 
 © 2025–2026 Jan Buchenau
