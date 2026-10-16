@@ -1,3 +1,7 @@
+# Copyright (c) 2025-2026 Jan Buchenau
+# SPDX-License-Identifier: MIT
+# https://machine-jan.github.io
+
 # ============================================================
 # CIRCULAR SOUNDS – VERSION 0.22 FOREST LOSS
 # schreibt pro Zustand eine neue JSON-Datei in:

@@ -1,3 +1,7 @@
+# Copyright (c) 2025-2026 Jan Buchenau
+# SPDX-License-Identifier: MIT
+# https://machine-jan.github.io
+
 use_random_seed rrand_i(1000,9999)
 
 ###############################################

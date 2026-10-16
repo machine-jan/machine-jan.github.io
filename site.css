@@ -86,3 +86,4 @@ button {
 }
 button:hover { border-color: var(--accent); }
 code { color: var(--accent); }
+footer .copy { display: inline-block; margin-top: 12px; opacity: 0.85; }

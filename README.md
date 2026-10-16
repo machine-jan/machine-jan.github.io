@@ -30,3 +30,13 @@ climate-sonification/   Weiterleitung → heat/
 Sonic Pi schreibt bei jedem Jahrzehnt `latest.json`. Für die Aufführung `heat/live/` lokal
 in den Ordner legen, in den das Skript schreibt (`LATEST_PATH`), und `index.html`
 über einen lokalen Webserver öffnen (z. B. `python -m http.server`), damit `fetch` funktioniert.
+
+## Lizenz
+
+© 2025–2026 Jan Buchenau
+
+- **Code** (Sonic-Pi-Skripte, JavaScript, HTML, CSS): [MIT-Lizenz](LICENSE) – frei nutzbar,
+  veränderbar und weitergebbar, solange Copyright-Hinweis und Lizenztext erhalten bleiben.
+- **Texte, Gestaltung, Musik und Material** (z. B. PDFs): alle Rechte vorbehalten.
+- **Logos** in `heat/live/logos/` gehören den jeweiligen Inhabern (Fab City Hamburg,
+  Freie und Hansestadt Hamburg) und sind nicht zur Weiterverwendung lizenziert.

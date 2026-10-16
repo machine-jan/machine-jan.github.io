@@ -1,3 +1,7 @@
+# Copyright (c) 2025-2026 Jan Buchenau
+# SPDX-License-Identifier: MIT
+# https://machine-jan.github.io
+
 # ============================================
 # REGENWALD v37
 # Organisch lebendig · Tiefenstaffelung
