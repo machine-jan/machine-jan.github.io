@@ -92,3 +92,6 @@ footer .copy { display: inline-block; margin-top: 12px; opacity: 0.85; }
 .sources dt { font-weight: 700; margin-top: 20px; }
 .sources dt span { font-weight: 400; color: var(--muted); font-size: 13px; }
 .sources dd { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+.timeline .dates { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 12px; color: var(--text); margin-top: 2px; }
+.timeline .dates b { font-weight: 400; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; margin-right: 4px; }
