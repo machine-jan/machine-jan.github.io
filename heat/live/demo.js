@@ -66,14 +66,138 @@
     };
   }
 
+  // ------------------------------------------------------------
+  // Zeitsteuerung: Tempo- und Jahresregler, Pause.
+  // URL-Parameter: ?s=Sekunden pro Jahrzehnt, ?y=Startjahr, ?ui=0 ohne Regler.
+  // ------------------------------------------------------------
   const params = new URLSearchParams(location.search);
-  const secondsPerDecade = Math.max(0.5, Number(params.get("s")) || 3);
-  const start = Date.now();
+  const S_MIN = 0.5, S_MAX = 240;
+  let secondsPerDecade = Math.min(S_MAX, Math.max(S_MIN, Number(params.get("s")) || 3));
+  const startYear = Number(params.get("y"));
+  let pos = startYear >= 1800 && startYear <= 2100 ? Math.round((startYear - 1800) / 10) : 0;
+  let playing = true;
+  let last = performance.now();
+  let shownIndex = -1;
 
   function currentIndex() {
-    const step = Math.floor((Date.now() - start) / (secondsPerDecade * 1000));
-    return step % years.length;
+    return Math.floor(pos) % years.length;
   }
+
+  // Regler-Wert 0–1000 (logarithmisch) <-> Sekunden pro Jahrzehnt
+  const toSlider = s => Math.round(1000 * Math.log(s / S_MIN) / Math.log(S_MAX / S_MIN));
+  const fromSlider = v => S_MIN * Math.pow(S_MAX / S_MIN, v / 1000);
+
+  function fmtDuration(sec) {
+    if (sec < 60) return sec.toFixed(sec < 10 ? 1 : 0).replace(".", ",") + " s";
+    const m = Math.floor(sec / 60), r = Math.round(sec % 60);
+    if (m >= 60) return Math.floor(m / 60) + ":" + String(m % 60).padStart(2, "0") + " h";
+    return m + ":" + String(r).padStart(2, "0") + " min";
+  }
+
+  let ui = null;
+  function buildUI() {
+    const css = document.createElement("style");
+    css.textContent = `
+      .hc{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:50;
+        display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+        width:min(860px,calc(100vw - 24px));box-sizing:border-box;padding:10px 16px;
+        background:rgba(10,14,12,.72);color:#fff6e8;border:1px solid rgba(255,246,232,.18);
+        border-radius:10px;backdrop-filter:blur(6px);font:13px/1.3 Arial,Helvetica,sans-serif}
+      .hc.off{width:auto;padding:6px 10px}
+      .hc.off .hc-body{display:none}
+      .hc-body{display:contents}
+      .hc button{font:inherit;color:inherit;background:rgba(255,246,232,.1);
+        border:1px solid rgba(255,246,232,.3);border-radius:6px;padding:5px 10px;cursor:pointer}
+      .hc label{display:flex;align-items:center;gap:8px;flex:1 1 220px;min-width:0}
+      .hc input[type=range]{flex:1;min-width:80px;accent-color:#ff8a5c}
+      .hc .v{white-space:nowrap;opacity:.85;min-width:9.5em}
+      .hc .k{opacity:.6;white-space:nowrap}
+      @media print{.hc{display:none}}`;
+    document.head.appendChild(css);
+
+    const box = document.createElement("div");
+    box.className = "hc";
+    box.setAttribute("role", "group");
+    box.setAttribute("aria-label", "Zeitsteuerung");
+    box.innerHTML = `
+      <button type="button" class="hc-play" aria-label="Pause">❚❚</button>
+      <span class="hc-body">
+        <label><span class="k">Jahr</span>
+          <input class="hc-year" type="range" min="0" max="${years.length - 1}" step="1" value="0" aria-label="Jahr">
+          <span class="v hc-yv"></span></label>
+        <label><span class="k">Tempo</span>
+          <input class="hc-speed" type="range" min="0" max="1000" step="1" aria-label="Tempo">
+          <span class="v hc-sv"></span></label>
+      </span>
+      <button type="button" class="hc-hide" aria-label="Regler ausblenden" title="Regler ausblenden (H)">–</button>`;
+    document.body.appendChild(box);
+
+    const q = c => box.querySelector(c);
+    ui = { box, play: q(".hc-play"), year: q(".hc-year"), yv: q(".hc-yv"),
+           speed: q(".hc-speed"), sv: q(".hc-sv"), hide: q(".hc-hide") };
+    ui.speed.value = toSlider(secondsPerDecade);
+
+    ui.play.addEventListener("click", togglePlay);
+    ui.year.addEventListener("input", () => { pos = Number(ui.year.value); refresh(true); });
+    ui.speed.addEventListener("input", () => { secondsPerDecade = fromSlider(Number(ui.speed.value)); labels(); });
+    ui.hide.addEventListener("click", toggleUI);
+    document.addEventListener("keydown", e => {
+      if (e.target.tagName === "INPUT" && e.key !== " ") return;
+      if (e.key === " ") { e.preventDefault(); togglePlay(); }
+      if (e.key === "h" || e.key === "H") toggleUI();
+    });
+    if (params.get("ui") === "0") toggleUI();
+    labels();
+  }
+
+  function toggleUI() {
+    if (!ui) return;
+    const off = ui.box.classList.toggle("off");
+    ui.hide.textContent = off ? "Regler" : "–";
+    ui.hide.setAttribute("aria-label", off ? "Regler einblenden" : "Regler ausblenden");
+  }
+
+  function togglePlay() {
+    playing = !playing;
+    last = performance.now();
+    if (ui) {
+      ui.play.textContent = playing ? "❚❚" : "▶";
+      ui.play.setAttribute("aria-label", playing ? "Pause" : "Abspielen");
+    }
+  }
+
+  function labels() {
+    if (!ui) return;
+    const i = currentIndex();
+    ui.year.value = i;
+    ui.yv.textContent = years[i];
+    ui.sv.textContent = fmtDuration(secondsPerDecade) + " / Jahrzehnt · Lauf " +
+      fmtDuration(secondsPerDecade * years.length);
+  }
+
+  // Plakat sofort aktualisieren, wenn ein neues Jahrzehnt erreicht ist,
+  // statt auf den Sekundentakt von app.js zu warten.
+  function refresh(force) {
+    const i = currentIndex();
+    if (force || i !== shownIndex) {
+      shownIndex = i;
+      labels();
+      if (typeof window.fetchLatest === "function") window.fetchLatest();
+    }
+  }
+
+  function tick(now) {
+    if (playing) {
+      pos += (now - last) / 1000 / secondsPerDecade;
+      if (pos >= years.length) pos -= years.length;
+    }
+    last = now;
+    refresh(false);
+    requestAnimationFrame(tick);
+  }
+
+  buildUI();
+  requestAnimationFrame(tick);
 
   const realFetch = window.fetch.bind(window);
   window.fetch = function (url, opts) {
