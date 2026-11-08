@@ -10,7 +10,7 @@ index.html              Startseite
 site.css                gemeinsames Layout
 code.html               Code-Viewer (?f=pfad/zur/datei.rb)
 
-heat/                   HEAT! – Circular Sounds (Klimasonifikation)
+heat/                   HEAT! – Sounds like climate change (Klimasonifikation)
   index.html            Projektseite mit Versionsverlauf
   scripts/              Sonic-Pi-Fassungen in chronologischer Reihenfolge
   live/                 HTML-Plakat der Performance (v0.22)
